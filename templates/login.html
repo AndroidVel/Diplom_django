@@ -9,17 +9,17 @@
     <div class="bg-img">
         <form class="container" method="post">
             {% csrf_token %}
-            <h1>Login</h1>
+            <h1>Войти</h1>
               
-            <label for="email"><b>Email</b></label>
-            <input type="text" placeholder="Enter Email" name="email" id="email" required>
+            <label for="email"><b>Почта</b></label>
+            <input type="text" placeholder="Введите электронную почту" name="email" id="email" required>
             
-            <label for="psw"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="password" id="psw" required>
+            <label for="psw"><b>Пароль</b></label>
+            <input type="password" placeholder="Введите пароль" name="password" id="psw" required>
             
             <div class="error">{{ error }}</div>
             <p>
-            <button type="submit" class="btn">Login</button>
+            <button type="submit" class="btn">Войти</button>
         </form>
     </div>
 {% endblock %}
