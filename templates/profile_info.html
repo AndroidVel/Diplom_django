@@ -1,0 +1,27 @@
+{% extends 'home.html' %}
+
+{% block style %}
+    {{  block.super }}
+    {% include 'css/profile_info.css' %}
+{% endblock %}
+
+{% block content %}
+    <div class="bg-img">
+        <form class="container" method="post">
+            {% csrf_token %}
+            <h1>Profile info</h1>
+              
+            <label for="email"><b>Email</b></label>
+            <input type="email" placeholder="Enter Email" name="email" id="email" value="{{ email }}" maxlength="30" required>
+            
+            <label for="first-name"><b>First name</b></label>
+            <input type="text" placeholder="Enter first name" name="first_name" id="fst-name" value="{{ first_name }}" minlength="3" maxlength="20" required>
+            
+            <label for="last-name"><b>Last name</b></label>
+            <input type="text" placeholder="Enter last name" name="last_name" id="last-name" value="{{ last_name }}" minlength="3" maxlength="20" required>
+            
+            <div class="error">{{ error }}</div>            
+            <button type="submit" class="btn">Save changes</button>
+        </form>
+    </div>
+{% endblock %}
