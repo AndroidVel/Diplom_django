@@ -1,0 +1,25 @@
+{% extends 'home.html' %}
+
+{% block style %}
+    {{ block.super }}
+    {% include 'css/login.css' %}
+{% endblock %}
+
+{% block content %}
+    <div class="bg-img">
+        <form class="container" method="post">
+            {% csrf_token %}
+            <h1>Login</h1>
+              
+            <label for="email"><b>Email</b></label>
+            <input type="text" placeholder="Enter Email" name="email" id="email" required>
+            
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password" id="psw" required>
+            
+            <div class="error">{{ error }}</div>
+            <p>
+            <button type="submit" class="btn">Login</button>
+        </form>
+    </div>
+{% endblock %}
