@@ -216,7 +216,7 @@ def log_out(request):
     log_st.log_out()
     context = {
         'title': 'Главная',
-        'pagename': 'Булочная',
+        'pagename': 'Булочная - Тёплый Хлеб',
         'logged': log_st.is_logged_in,
         'LinkStatus': link_st,
     }
