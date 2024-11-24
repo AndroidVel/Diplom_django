@@ -11,5 +11,5 @@ class UsersAdmin(admin.ModelAdmin):
 @admin.register(Product)
 class ProductsAdmin(admin.ModelAdmin):
     list_display = ('name', 'weight', 'price')
-    search_fields = 'name'
+    search_fields = ('name',)
     list_per_page = 15
