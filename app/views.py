@@ -37,15 +37,15 @@ def products(request):
             if Search(request.GET).is_valid():
                 search = request.GET['search']
                 context['search'] = search
-                if Product.objects.filter(title__icontains=search):
+                if Product.objects.filter(name__icontains=search):
                     # getting all products which corresponds to the search
-                    context['products'] = Product.objects.filter(title__icontains=search)
+                    context['products'] = Product.objects.filter(name__icontains=search)
                 else:
                     context['products'] = ''
     # Add to cart selected product
     if request.method == 'POST':
-        if 'add_product' in request.POST and isinstance(request.POST['add_product'], str) and Product.objects.get(title=request.POST['add_product']):
-            Product.objects.get(title=request.POST['add_product']).buyer.add(User.objects.get(email=log_st.email))
+        if 'add_product' in request.POST and Product.objects.get(name=request.POST['add_product']):
+            Product.objects.get(name=request.POST['add_product']).buyer.add(User.objects.get(email=log_st.email))
     return render(request, 'products.html', context)
 
 
@@ -86,7 +86,7 @@ def log_in(request):
                 log_st.log_in(email)
                 return render(request, 'home.html', {
                     'title': 'Главная',
-                    'pagename': 'Булочная',
+                    'pagename': 'Булочная - Тёплый Хлеб',
                     'logged': True,
                     'LinkStatus': link_st,
 
@@ -142,7 +142,7 @@ def sing_up(request):
                 # return home page
                 return render(request, 'home.html', {
                     'title': 'Главная',
-                    'pagename': 'Булочная',
+                    'pagename': 'Булочная - Тёплый Хлеб',
                     'logged': True,
                     'LinkStatus': link_st,
                 })
@@ -189,7 +189,7 @@ def cart(request):
     if request.method == 'POST':
         # remove one product
         if 'product_to_remove' in request.POST and isinstance(request.POST['product_to_remove'], str) and log_st.is_logged_in:
-            Product.objects.get(title=request.POST['product_to_remove']).buyer.remove(User.objects.get(email=log_st.email))
+            Product.objects.get(name=request.POST['product_to_remove']).buyer.remove(User.objects.get(email=log_st.email))
         else:
             # if the project was restarted
             context['warn'] = 'Войдите в свой профиль!'
